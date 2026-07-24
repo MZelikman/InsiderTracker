@@ -1,11 +1,7 @@
 import requests
 import xml.etree.ElementTree as ET
 
-
 headers = {"User-Agent": "Maxim Zelikman zelikmanmaxim@gmail.com"}
-
-
-
 
 POPULAR_TICKERS = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "MU"]
 
