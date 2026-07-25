@@ -19,3 +19,34 @@ def get_top_purchases(df):
     purchases = df[df["code"] == "P"]
     purchases = purchases.sort_values("value", ascending=False)
     return purchases
+
+def get_top_activity(df):
+    activity = df[df["code"].isin(["P", "S"])]
+    activity = activity.sort_values("value", ascending=False)
+    return activity
+
+def format_value(value):
+    if value >= 1_000_000_000:
+        return f"${value/1_000_000_000:.1f}B"
+    elif value >= 1_000_000:
+        return f"${value/1_000_000:.1f}M"
+    elif value >= 1_000:
+        return f"${value/1_000:.1f}K"
+    else:
+        return f"${value:,.0f}"
+
+def format_name(name):
+    order = name.split()
+    if len(order) < 2:
+        return name
+    if len(order) == 3:
+        return " ".join([order[1], order[2], order[0]])
+    return " ".join([order[1], order[0]])
+
+
+def format_date(date):
+    order = date.split("/")
+
+    return "-".join([order[1], order[2], order[0]])
+
+    

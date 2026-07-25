@@ -28,7 +28,7 @@ for tk in POPULAR_TICKERS:
             except Exception as e:
                 print(f"Skipped: {tk} {accession_numbers[i]} : {e}")
 
-            time.sleep(0.2)
+    time.sleep(0.2)
 
 
 df = pd.DataFrame(transaction_log)

@@ -40,12 +40,14 @@ def get_insider_transactions(cik, accession):
         code = t.find(".//transactionCode")
         shares = t.find(".//transactionShares/value")
         price = t.find(".//transactionPricePerShare/value")
+        date = t.find(".//transactionDate/value")
 
         trades.append({
             "name": name.text if name is not None else None,
             "code": code.text if code is not None else None,
             "shares": shares.text if shares is not None else None,
             "price": price.text if price is not None else None,
+            "date": date.text if date is not None else None,
         })
 
     return trades
