@@ -45,8 +45,14 @@ def format_name(name):
 
 
 def format_date(date):
-    order = date.split("/")
+    if pd.isnull(date):
+        return "Unknown"
+    return date.strftime("%m/%d/%Y")
 
-    return "-".join([order[1], order[2], order[0]])
+def cluster_buyinh(df):
+    purchases = df[df["code"] == "P"]
+    unique_buyers = purchases.groupby("ticker")["name"].nunique()
+
+
 
     
