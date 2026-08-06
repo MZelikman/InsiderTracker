@@ -1,7 +1,5 @@
 import pandas as pd
 
-
-
 def convert_transactions(df):
     df = df.copy()
     df["shares"] = pd.to_numeric(df["shares"], errors='coerce')
@@ -49,10 +47,14 @@ def format_date(date):
         return "Unknown"
     return date.strftime("%m/%d/%Y")
 
-def cluster_buyinh(df):
+def cluster_buying(df):
     purchases = df[df["code"] == "P"]
     unique_buyers = purchases.groupby("ticker")["name"].nunique()
+    clusters = unique_buyers[unique_buyers >= 3]
+
+    tickers = clusters.index.tolist()
+    detects = df[(df["code"] == "P") & (df["ticker"].isin(tickers))]
+
+    return detects.sort_values(["ticker", "date"])
 
 
-
-    
